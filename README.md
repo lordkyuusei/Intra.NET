@@ -18,7 +18,7 @@ A step by step series of examples that tell you how to get a development env run
 
 First, clone the repository.
 ```
-git clone git@github.com/lordkyuusei/Intra.NET
+git clone https://github.com/lordkyuusei/Intra.NET.git
 ```
 
 Open it using Visual Studio.
@@ -27,7 +27,7 @@ Open it using Visual Studio.
 ... well... just open your ide...
 ```
 
-Build it by selecting x64 or x86, then hit "Local Machine". See the magic happens.
+Build it by selecting x64 or x86, then hit "Local Machine". It's now building & deploying. See ? Must be some kind of magic.
 
 ## Built With
 
@@ -36,7 +36,7 @@ Build it by selecting x64 or x86, then hit "Local Machine". See the magic happen
 
 ## Contributing
 
-You can improve this project by submitting pull request about whatever you would like to improve : code style, typos, tricks, etc.
+You can improve this project by submitting pull requests about whatever you would like to improve : code style, typos, tricks, etc.
 
 ## Versioning
 
