@@ -18,10 +18,10 @@
             <converters:BoolToVisibility />
         </converters:ComboConverter>
     </UserControl.Resources>
-        <Grid 
+    <Grid 
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid Background="{StaticResource SystemControlTransparentBrush}">
+        <Grid x:Name="Ecran" Background="{StaticResource SystemControlTransparentBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="5*"/>
@@ -32,7 +32,7 @@
                 <RowDefinition Height="5*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Column="1" Grid.Row="1" Background="{StaticResource SystemControlAcrylicElementBrush}">
+            <Grid x:Name="Ecran_de_connexion" Grid.Column="1" Grid.Row="1" Background="{StaticResource SystemControlAcrylicElementBrush}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -43,31 +43,30 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <ProgressRing Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" IsActive="{x:Bind ViewModel.IsBusy, Mode=OneWay}" />
-                <PersonPicture Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
+                <ProgressRing x:Name="Indicateur_de_connexion" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" IsActive="{x:Bind Mode=OneWay, Path=ViewModel.IsBusy}" />
+                <PersonPicture x:Name="Photo_de_profil" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
                     <PersonPicture.ProfilePicture>
-                        <BitmapImage UriSource="{x:Bind ViewModel.UserPicture, Mode=TwoWay}"/>
+                        <BitmapImage UriSource="{x:Bind Mode=TwoWay, Path=ViewModel.UserPicture}"/>
                     </PersonPicture.ProfilePicture>
                 </PersonPicture>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                           Text="{x:Bind ViewModel.Introduction, Mode=TwoWay}" TextWrapping="Wrap" />
+                <TextBlock x:Name="Texte_de_connexion" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                           Text="{x:Bind Mode=TwoWay, Path=ViewModel.Introduction}" TextWrapping="Wrap" />
 
-                <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Spacing="20" Visibility="{x:Bind ViewModel.IsLoggedOut, Mode=TwoWay, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel x:Name="Panneau_de_connexion" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Spacing="20" Visibility="{x:Bind Converter={StaticResource BoolToVisibility}, Mode=TwoWay, Path=ViewModel.IsLoggedOut}">
                     <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Height="0"
-                         PlaceholderText="xxxxx.xxxxx@epitech.eu" Text="{x:Bind ViewModel.UserName, Mode=TwoWay}"/>
+                         PlaceholderText="xxxxx.xxxxx@epitech.eu" Text="{x:Bind Mode=TwoWay, Path=ViewModel.UserName}" BorderThickness="0,0,0,2"/>
 
-                    <PasswordBox Name="PasswordBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Height="0"
-                             PlaceholderText="********" />
+                    <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Height="0"
+                             PlaceholderText="********" BorderThickness="0,0,0,2" PasswordRevealMode="Peek"/>
 
-                    <Button Style="{StaticResource AccentButtonStyle}" Content="Connexion" Command="{x:Bind ViewModel.IntranetAuthenticateCommand}" CommandParameter="{Binding ElementName=PasswordBox}" HorizontalAlignment="Right"/>
+                    <Button Style="{StaticResource AccentButtonStyle}" Content="Connexion" Command="{x:Bind Path=ViewModel.IntranetAuthenticateCommand}" CommandParameter="{Binding ElementName=PasswordBox}" HorizontalAlignment="Right"/>
                 </StackPanel>
-                <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Spacing="20" Visibility="{x:Bind ViewModel.IsLoggedOut, Mode=TwoWay, Converter={StaticResource InvertAndVisibilitate}}">
-                    <Button Style="{StaticResource AccentButtonStyle}" Content="Déconnexion" Command="{x:Bind ViewModel.IntranetInvalidateCommand}" HorizontalAlignment="Center"/>
+                <StackPanel x:Name="Panneau_de_déconnexion_" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Spacing="20" Visibility="{x:Bind Converter={StaticResource InvertAndVisibilitate}, Mode=TwoWay, Path=ViewModel.IsLoggedOut}">
+                    <Button Style="{StaticResource AccentButtonStyle}" Content="Déconnexion" Command="{x:Bind Path=ViewModel.IntranetInvalidateCommand}" HorizontalAlignment="Center"/>
                 </StackPanel>
-            </Grid>
-            <Grid Grid.Column="1">
             </Grid>
         </Grid>
+        <Button Style="{StaticResource AccentButtonStyle}" Content="Synchroniser" Command="{x:Bind ViewModel.AddNewUserInDatabaseCommand}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,513,0,0"/>
     </Grid>
 </Page>

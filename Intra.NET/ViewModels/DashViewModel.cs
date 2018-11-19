@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Intra.NET.Constants;
 using Intra.NET.Helpers;
+using Intra.NET.Models;
 using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
@@ -13,21 +14,33 @@ namespace Intra.NET.ViewModels
     {
         private INavigationService navigationService;
         private HttpClientWrapper clientWrapper;
-        public ICommand isUserSignedInCommand;
-
+        private EpitechStudent epitechStudent;
         private string dashboard;
-        public string Dashboard
+
+        internal string Dashboard
         {
             get => dashboard;
             set => SetProperty(ref dashboard, value);
         }
 
+        public ICommand IsUserSignedInCommand { get; set; }
+        public int EctsRatio
+        {
+            get => (epitechStudent.CurrentCredits / 60) * 100;
+        }
+
+        public int EctsValue
+        {
+            get => epitechStudent.CurrentCredits;
+        }
+
         public DashViewModel(INavigationService navigationService)
         {
             clientWrapper = HttpClientWrapper.Instance;
+            epitechStudent = EpitechStudent.Instance;
             this.navigationService = navigationService;
-            isUserSignedInCommand = new DelegateCommand(IsUserSignedIn);
 
+            IsUserSignedInCommand = new DelegateCommand(IsUserSignedIn);
         }
 
         public void IsUserSignedIn()
@@ -40,7 +53,7 @@ namespace Intra.NET.ViewModels
                 navigationService.Navigate("Sign", null);
         }
 
-        public async void LoadDashBoard()
+        internal async void LoadDashBoard()
         {
             Dashboard = await clientWrapper.GetStringAsync(new Uri(EntAPI.intranetUri));
         }

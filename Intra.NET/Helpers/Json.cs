@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 
 using Newtonsoft.Json;
@@ -21,6 +22,17 @@ namespace Intra.NET.Helpers
             {
                 return JsonConvert.SerializeObject(value);
             });
+        }
+
+        public static T Deserialize<T>(string json)
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            return serializer.Deserialize<T>(new JsonTextReader(new StringReader(json)));
+        }
+
+        public static T DeserializeObject<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json);
         }
     }
 }

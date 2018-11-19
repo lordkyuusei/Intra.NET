@@ -1,22 +1,24 @@
-﻿using System;
-using System.ComponentModel;
-using Prism.Windows.Mvvm;
-using Intra.NET.Constants;
+﻿using Intra.NET.Constants;
 using Intra.NET.Helpers;
-using System.Windows.Input;
-using Prism.Commands;
-using Windows.ApplicationModel.Resources;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
+using Intra.NET.Models;
+using LiteDB;
 using Newtonsoft.Json;
-using Windows.UI.Xaml.Controls;
+using Newtonsoft.Json.Linq;
+using Prism.Commands;
+using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Input;
+using Windows.ApplicationModel.Resources;
+using Windows.UI.Xaml.Controls;
 
 namespace Intra.NET.ViewModels
 {
     public class SignViewModel : ViewModelBase
     {
-        #region Private fields & public members
+        #region Fields
         private readonly ResourceLoader resw = ResourceLoader.GetForViewIndependentUse("SignViewModelStrings");
         private readonly INavigationService navigationService;
         private readonly HttpClientWrapper  clientWrapper;
@@ -34,9 +36,10 @@ namespace Intra.NET.ViewModels
 
         public ICommand IntranetAuthenticateCommand;
         public ICommand IntranetInvalidateCommand;
+        public ICommand AddNewUserInDatabaseCommand;
         #endregion
 
-        #region View Model Constructor
+        #region Constructor
         /// <summary>
         /// View model constructor. We first set private properties, then public fields, and last the commands.
         /// </summary>
@@ -50,6 +53,7 @@ namespace Intra.NET.ViewModels
             Introduction = IsLoggedOut ? resw.GetString("GREETINGS") : resw.GetString("GREETINGS-END");
             IntranetAuthenticateCommand = new DelegateCommand<object>(IntranetAuthenticate, CanAuthenticate).ObservesProperty(() => UserName);
             IntranetInvalidateCommand = new DelegateCommand(IntranetInvalidate);
+            AddNewUserInDatabaseCommand = new DelegateCommand(AddNewUserToLiteDatabase);
         }
         #endregion
 
@@ -147,6 +151,19 @@ namespace Intra.NET.ViewModels
             IsLoggedOut = true;
         }
         #endregion
+
+        private static async void AddNewUserToLiteDatabase()
+        {
+            HttpClientWrapper clientWrapper = HttpClientWrapper.Instance;
+            string jsonWebpage = await clientWrapper.GetStringAsync(new Uri(EntAPI.intranetUri));
+
+            JObject o = new JObject();
+            o["board"] = jsonWebpage;
+            using (LiteDatabase db = new LiteDatabase(@"intra.NET.db"))
+            {
+
+            }
+        }
 
         /// <summary>
         /// This method is triggered when a field that subscribed to PropertyChanged event (with the SetProperty method) is modified.

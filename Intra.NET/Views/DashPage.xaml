@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
@@ -14,7 +15,7 @@
     <i:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
             <core:EventTriggerBehavior.Actions>
-                <core:InvokeCommandAction Command="{x:Bind ViewModel.isUserSignedInCommand}"/>
+                <core:InvokeCommandAction Command="{x:Bind ViewModel.IsUserSignedInCommand}"/>
             </core:EventTriggerBehavior.Actions>
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
@@ -26,7 +27,9 @@
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
-            <TextBlock Text="{x:Bind ViewModel.Dashboard, Mode=TwoWay}"/>
+            <controls:RadialProgressBar x:Name="Crédits" Margin="507,242,508,243" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                        Value="{x:Bind ViewModel.EctsRatio}" />
+            <TextBlock HorizontalAlignment="Center" Height="53" Margin="0,340,0,0" Text="{x:Bind ViewModel.EctsValue}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
         </Grid>
     </Grid>
 </Page>
