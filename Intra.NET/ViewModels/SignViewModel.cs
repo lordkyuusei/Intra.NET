@@ -157,8 +157,13 @@ namespace Intra.NET.ViewModels
             HttpClientWrapper clientWrapper = HttpClientWrapper.Instance;
             string jsonWebpage = await clientWrapper.GetStringAsync(new Uri(EntAPI.intranetUri));
 
-            JObject o = new JObject();
-            o["board"] = jsonWebpage;
+            JObject jsonObject = JObject.Parse(jsonWebpage);
+            JToken jsonBoard = jsonObject["board"];
+            JArray jsonProjects = (JArray)jsonBoard["projets"];
+            JArray jsonGrades = (JArray)jsonBoard["notes"];
+            JArray jsonActivities = (JArray)jsonBoard["activites"];
+            JArray jsonModules = (JArray)jsonBoard["modules"];
+            JArray jsonStages = (JArray)jsonBoard["stages"];
             using (LiteDatabase db = new LiteDatabase(@"intra.NET.db"))
             {
 
