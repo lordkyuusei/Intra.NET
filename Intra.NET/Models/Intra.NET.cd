@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Intra.NET.Models.Activity">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgECAAAAQAAAABAAAAACAAAAAAAAAFAEAAAACAAAABA=</HashCode>
+      <FileName>Models\Activity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Intra.NET.Models.EpitechStudent">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAkAAAABAAAAQAAAAAAAAQQACAIEAAQA=</HashCode>
+      <FileName>Models\EpitechStudent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Intra.NET.Models.History">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Intra.NET.Models.History.Sender" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\History.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAADQAAAAgAAEEAAAAAAAAAAAAAAAAABAAAAAAAAEAA=</HashCode>
+      <FileName>Models\History.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Intra.NET.Models.LastGrade">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAQAAAAAAAAAIAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\LastGrade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Intra.NET.Models.Module">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAQAAAABAAAAEAAAAAAAAAAEAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Module.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Intra.NET.Models.Performance">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAIAAAQEAwAA=</HashCode>
+      <FileName>Models\Performance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Intra.NET.Models.Project">
+    <Position X="5.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACABAAQAAAgBAAAAAABAAAAAACAEAEAAAAAAAAAAI=</HashCode>
+      <FileName>Models\Project.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Intra.NET.Interfaces.IEvent">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAQAAAABAAAAAAAAAAAAAAAEAEAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IEvent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

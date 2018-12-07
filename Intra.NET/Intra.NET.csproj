@@ -134,6 +134,7 @@
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Helpers\Synchronization.cs" />
     <Compile Include="Helpers\TokenFinder.cs" />
     <Compile Include="Interfaces\IEvent.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -248,6 +249,7 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="Intra.NET_TemporaryKey.pfx" />
+    <None Include="Models\Intra.NET.cd" />
     <PRIResource Include="Localization\SignViewModelStrings.resw">
       <SubType>Designer</SubType>
     </PRIResource>

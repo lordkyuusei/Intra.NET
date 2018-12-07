@@ -10,6 +10,7 @@ using Prism.Windows.Navigation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Controls;
@@ -131,6 +132,7 @@ namespace Intra.NET.ViewModels
             //    { "i19", "4746" }
             //});
 
+            AddNewUserToLiteDatabase();
             IsBusy = false;
             navigationService.Navigate("Dash", null);
         }
@@ -166,7 +168,14 @@ namespace Intra.NET.ViewModels
             JArray jsonStages = (JArray)jsonBoard["stages"];
             using (LiteDatabase db = new LiteDatabase(@"intra.NET.db"))
             {
-
+                var projects = db.GetCollection<Project>("projects");
+                foreach (JObject obj in jsonProjects.Children<JObject>())
+                {
+                    foreach (JProperty prop in obj.Properties())
+                    {
+                        Debug.WriteLine(prop.Name, ", ", prop.Value);
+                    }
+                }
             }
         }
 

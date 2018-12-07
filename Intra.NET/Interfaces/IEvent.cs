@@ -1,14 +1,16 @@
 ﻿using System;
 
+#pragma warning disable IDE1006 // Naming Styles because Intra API
 namespace Intra.NET.Interfaces
 {
     internal interface IEvent
     {
-        string Title { get; set; }
-        string Link { get; set; }
-        DateTime Start { get; set; }
-        DateTime End { get; set; }
-        double Completion { get; set; }
-        DateTime Registration { get; set; }
+        string title { get; set; }
+        string title_link { get; set; }
+        DateTime timeline_start { get; set; }
+        DateTime timeline_end { get; set; }
+        double timeline_barre { get; set; }
+        DateTime date_inscription { get; set; }
     }
 }
+#pragma warning restore IDE1006 // Naming Styles because Intra API
